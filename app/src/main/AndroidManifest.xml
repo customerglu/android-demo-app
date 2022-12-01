@@ -1,61 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.customerglu.customerglu">
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    package="com.example.customerglu">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false"/>
+
 
     <application
+        android:name="com.example.customerglu.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CustomerGlu">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".ShoppingActivity" android:exported="true"
-            android:screenOrientation="portrait">
-
-            <intent-filter android:autoVerify="true"
-                tools:targetApi="m">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-
-                <data
-                    android:host="nirafinance.com"
-                    android:scheme="https"/>
-
-            </intent-filter>
-        </activity>
-        <activity android:name=".MyCart"         android:screenOrientation="portrait" />
-        <activity android:name=".SplashScreen" android:exported="true" android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".UserForm"
-            android:screenOrientation="portrait"
-            >
-            <intent-filter android:autoVerify="true"
-                android:exported="true"
-                tools:targetApi="m" >
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data
-                    android:host="www.customerglu.com"
-                    android:scheme="https"
-                    />
-
-            </intent-filter>
-        </activity>
-
-
+        android:largeHeap="true"
+        android:hardwareAccelerated="false"
+        android:theme="@style/Theme.BuyNow">
+        <meta-data android:name="CUSTOMERGLU_WRITE_KEY" android:value="s2TtwNefW281npVX4WF888WtrhSjmv9ZaqnUX0tN" />
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
@@ -63,31 +34,56 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <receiver android:name="MyReceiver"
-            android:permission="TODO">
+        <activity android:name=".AddAddressActivity" />
+        <activity android:name=".ShipingAddressActivity" />
+        <activity android:name=".VisualResultActivity" />
+        <activity android:name=".VisualSearchActivity" />
+        <activity android:name=".ProductDetailsActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".SplashScreenActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            >
             <intent-filter>
-                <action android:name="OpenWeb">
-                </action>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".EmailVerifyActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".PaymentActivity" />
+        <activity android:name=".LoginOptionActivity"
+            android:exported="false">
 
-        </receiver>
-        <service
-            android:name=".FloatingViewService"
-            android:enabled="true"
-            android:exported="false"
-            android:foregroundServiceType="mediaProjection"
-            tools:targetApi="q" />
+        </activity>
+        <activity android:name=".QRCodeScanner" >
 
-        <meta-data android:name="CUSTOMERGLU_WRITE_KEY"
-            android:value="G4VCVVAcLub8hx5SaeqH3pRqLBmDFrwy" />
+        </activity>
+        <activity android:name=".PaymentSuccessActivity" />
+        <activity android:name=".CampaignActivity"
+            android:exported="true">
+
+
+            <intent-filter android:autoVerify="true"
+                android:exported="true"
+                tools:targetApi="m">
+
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="customerglu.com"
+                    android:scheme="https"
+                    />
+            </intent-filter>
+        </activity>
+
 
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
 
 </manifest>
